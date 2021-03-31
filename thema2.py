@@ -35,6 +35,8 @@ def countbits(m1, m2):
     return count                
 
 def ECB(m1):
+    cipher_config = AES.new(private_key, AES.MODE_ECB)
+
     retrun ...crypted(m1)
 
 def CBC(m1):
