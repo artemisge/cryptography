@@ -1,6 +1,4 @@
-m3 = [0,1,1,0,0,1,1,0,0,1,1,0,1,0,1,0]
-m = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-print(len(m))
+m = [0,1,1,0,0,1,1,0,0,1,1,0,1,0,1,0]
 
 
 def sumxor(l):
@@ -28,11 +26,31 @@ def shiftLeft(m, bits):
     new_m = m.copy()
     for i in range(bits):
         tmp = new_m.pop(0)
-        print("i: ", i, "list: ", new_m)
-        new_m.append(tmp)
+        #print("i: ", i, "list: ", new_m)
+        new_m.append(0)
     return new_m
+
+
+def xor(m1, m2):
+    m = []
+    for i in range(len(m1)):
+        m.append(m1[i] ^ m2[i])
+    return m
 
 
 m6 = shiftLeft(m, 6)
 m10 = shiftLeft(m, 10)
-print(m6, m10)
+crypted = xor(xor(m, m6), m10)
+print("m     ",m)
+print("m6    ",m6)
+print("m^m6  ", xor(m, m6))
+print("m10   ",m10)
+print("crypt:",crypted)
+
+print("decryption:")
+cr6 = shiftLeft(crypted, 6)
+cr10 = shiftLeft(crypted, 10)
+decrypted = xor(xor(crypted, cr10), shiftLeft(xor(crypted, cr6), 6))
+print("dec:",decrypted)
+print(cr10)
+print(xor(crypted, cr10)) # m^m6
