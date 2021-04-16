@@ -5,10 +5,10 @@ def fast(a, g, N):
     g_bin = bin(g)
     x = a
     d = 1
-    for i in range(len(g_bin)):
-        if g_bin[i] == 1:
+    for i in range(len(g_bin) -1, 1, -1):
+        if (g_bin[i] == '1'):
             d = (d*x) % N
-        x = x**2
+        x = (x**2) % N
     return d
 
 print("fast algorithm: ", fast(2, 100, 101))
