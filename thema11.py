@@ -65,8 +65,8 @@ print("And φ(N) =", f_n)
 
 # STEP 3: find d, of private key (N, d)
 # it must be: (e*d) mod f_n == 1
-# using the modular multiplicative inverse
-d = 1179
+# using the modular multiplicative inverse function
+d = pow(19, -1, f_n)
 print("d=", d)
 
 # STEP 4: decrypt

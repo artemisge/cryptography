@@ -31,8 +31,8 @@ def Shanks(g, p, y):
     if (intersect): 
         B = intersection_list[0] # i guess it's only one element after all?
         quotient = L1.index(B)
-        reminder = L2.index(B)
-        k = A * quotient + reminder
+        remainder = L2.index(B)
+        k = A * quotient + remainder
         return k
     return "nope"
 
