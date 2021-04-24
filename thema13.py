@@ -90,7 +90,9 @@ def isMillerRabinPrime(n, x):
     while (n_1 % 2 == 0):
         r += 1
         n_1 //= 2
-    d = int((n - 1) / 2**r)
+    d = (n - 1) // 2**r
+    if n != 2**r*d + 1:
+        print("HEEEEY")
     
     restart = False
     for i in range(x):
@@ -116,6 +118,7 @@ def firstPart():
     n2 = 2**2048 - 1
     n1 = n2 - 2**2047 -1
 
+
     #print("n1: ", n1)
     #print("n2  ", n2)
     """
@@ -131,16 +134,50 @@ def firstPart():
     print(isFermatPrime(prime, 10000))
     #print(isPrime(prime)) 
 
+prime = 16158503035655503650357438344334975980222051334857742016065172713762327569433945446598600705761456731844358980460949009747059779575245460547544076193224141560315438683650498045875098875194826053398028819192033784138396109321309878080919047169238085235290822926018152521443787945770532904303776199561965192760957166694834171210342487393282284747428088017663161029038902829665513096354230157075129296432088558362971801859230928678799175576150822952201848806616643615613562842355410104862578550863465661734839271290328348967522998634176499319107762583194718667771801067716614802322659239302476074096777926805529798117247
+
 def secondPart():
     n2 = 2**1024 - 1
     n1 = n2 - 2**1023 -1
     j = n1 + 1 # to be odd
     while j<n2:
-        #print(j-n1, end=" ")
+        print(j-n1, end=" ")
         if (isMillerRabinPrime(j, 100)):
             print("YESSS", j)
             break
         j+=2
 
-secondPart()
-#print(isMillerRabinPrime(prime, 100))
+
+def thirdPart():
+    # to divide with 2 means to shift the bits to the left per one bit.
+    # so the p number will have one less bit hence [n1, n2] = [1498, 1499] bits
+    n2 = 2**1499 - 1
+    n1 = n2 - 2**1498 -1
+
+
+    j = n1 + 1 # to be odd
+    while j<n2:
+        #print(j-n1, end=" ")
+        if (isMillerRabinPrime(j, 100)):
+            if(isMillerRabinPrime(2*j + 1,100)):
+                print("YESSS", j)
+                break
+        j+=2
+    
+
+#secondPart()
+#thirdPart()
+
+# j, not 2j + 1
+
+def countTotalBits(num):
+     
+     # convert number into it's binary and
+     # remove first two characters 0b.
+     binary = bin(num)[2:]
+     print(len(binary))
+
+prime3 = 8768665527608509686906896990070214498381003970082707206018949506197740962640830550914270221646242315413287601698859379349823637235367489938542759729501175211972489121332274316121700677895865736634170546085034657362838864566236585631345904847328740161166263137937860583877312293340282588949027427471395168578488552554414461858156690183251188318829298033418675890843195824260498306763165833417127488000043763338882264720108545634596678880920928302150011
+countTotalBits(prime3)
+prime3_2 = prime3 * 2 + 1
+countTotalBits(prime3_2)
