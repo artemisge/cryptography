@@ -51,6 +51,6 @@ print("decryption:")
 cr6 = shiftLeft(crypted, 6)
 cr10 = shiftLeft(crypted, 10)
 decrypted = xor(xor(crypted, cr10), shiftLeft(xor(crypted, cr6), 6))
-print("dec:",decrypted)
-print(cr10)
-print(xor(crypted, cr10)) # m^m6
+print("dec:  ",decrypted)
+print("cr10  ", cr10)
+print("m'^cr10", xor(crypted, cr10)) # m^m6
