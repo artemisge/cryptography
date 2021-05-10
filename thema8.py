@@ -51,6 +51,6 @@ def decryptECB(enc, pw):
 def FSM(k, m):
     return c
 
-m1 = os.urandom(AES.block_size)
-
-enc1 = encryptECB(bytes(m1), b"password12345678")
+m = [os.urandom(AES.block_size), os.urandom(AES.block_size), os.urandom(AES.block_size)]
+print(m)
+#enc1 = encryptECB(bytes(m1), b"password12345678")
