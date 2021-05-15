@@ -66,22 +66,29 @@ def FSM(k, m):
 
     return c
 
-#print(m)
-#enc1 = encryptECB(bytes(m1), b"password12345678")
+def decrypt(k,c,iv):
+    m = []
+    m.append(iv)
+    for i in range(1, len(c)):
+        m.append(xor(c[i-1], decryptECB(xor(c[i], m[i-1]), k)))
+    return m
+
 iv = Random.get_random_bytes(AES.block_size)
-m = [iv, os.urandom(AES.block_size), os.urandom(AES.block_size), os.urandom(AES.block_size)]
 k = b"password12345678"
-print(type(bytes2binstr( m[0])))
+
+m = [iv, os.urandom(AES.block_size), os.urandom(AES.block_size), os.urandom(AES.block_size)]
+print("initial message")
 for i in m:
     print(bytes2binstr( i))
+
+# ENCRYPTION
 c = FSM(k, m)
 print("encrypted")
 for i in c:
     print(bytes2binstr( i))
 
-"""
-# xor works!
-print(bytes2binstr( b"1100"))
-print(bytes2binstr( b"0011"))
-print(bytes2binstr( xor(b"1100", b"0011")))
-"""
+# DECRYPTION
+dec = decrypt(k, c, iv)
+print("decrypted")
+for i in dec:
+    print(bytes2binstr( i))

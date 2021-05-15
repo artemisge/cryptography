@@ -28,6 +28,8 @@ primes = [2, 3, 5]
 exponents = [6, 2, 1]
 
 findFactors(primes, exponents)
+
+# Δεν ζητούνται:
 N = 2**6 * 3**2 * 5
 factors = (6+1) * (2+1) * (1+1)
 

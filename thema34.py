@@ -11,20 +11,10 @@ def isPrime(n) :
     i = 3
     k = int(math.sqrt(n))
     while (i < k):
-        if (i % 1000000 == 1):
-            print(".", end="")
         if (n % i == 0):
             return False
         i += 2
     return True
-
-
-def countTotalBits(num):
-     
-     # convert number into it's binary and
-     # remove first two characters 0b.
-     binary = bin(num)[2:]
-     print(len(binary))
 
 
 def inner(p, primes):
@@ -40,7 +30,7 @@ def inner(p, primes):
                     break
                 if (p == a + b + c):
                     array = [a, b, c]
-                    print(p, array)
+                    print(p, " = ", array[0], "+", array[1], "+", array[2])
                     return array
 
 def findABC(primes, primes_1000):
@@ -55,13 +45,8 @@ def primesLargeEnough(primes):
     pr = []
     for i in range(len(primes)):
         if primes[i] > 1000:
-            pr.append(i)
+            pr.append(primes[i])
     return pr
-
-
-def myprint(primes_1000, abc):
-    for i in range(len(abc)):
-        print(primes_1000[i], " = ", abc[i][0], " + ", abc[i][1], " + ", abc[i][2], " + ")
 
 
 # ---------MAIN--------------
