@@ -5,11 +5,20 @@ import random
 # output: all its divisors
 def findDivisors(n):
     divisors = []
+
     i = 1
-    while i <= n/2 + 1 :
-        if (n % i == 0) :
+    upper_limit = math.sqrt(n)
+    
+    while i <= upper_limit:
+        if (n % i == 0):
             divisors.append(i)
+
         i += 1
+
+        # every once in a while print progress
+        if (i % 1000000 == 0):
+            print(i)
+
     return divisors
 
 # input number n
@@ -30,28 +39,17 @@ def divisorLength(n):
             return 1
     return 0
 
-# probability for K=100000 is 0.00104
+# probability for K=100000 is 0.00104 0.00058 0.00052 0.00062
 # probability for K=10000 is 0.0009
 # probability for K=100 is 0.0
 
-"""
+
 K = 100000
 ones = 0
 for i in range(K):
+    #print(i)
     n = random.randint(1, 10000)
     ones += divisorLength(n)
 
-print(ones/K)"""
-
-# n bit length = 64
-# διάστημα μικρότερου/μεγαλύτερου αριθμού με 64 bits
-n2 = 2**64 - 1
-n1 = n2 - 2**63 -1
-
-K = 1
-ones = 0
-for i in range(K):
-    n = random.randint(n1, n2)
-    ones += divisorLength(n)
-
 print(ones/K)
+
