@@ -95,14 +95,12 @@ def lfsr(seed,feedback,bits, flag):
     feedback_new = index_of_ones    #this is a list which contains the positions of 1s in feedback list
     seed = deque(seed)              # make a new deque 
     output = []
-    #if flag==0:
-        #print('initial seed :',seed)
+    
     for i in range(bits):
         xor = sumxor([seed[j] for j in feedback_new])
         output.append(seed.pop()) #extract to output the right-most bit of current seed
         seed.appendleft(xor)      #insert from left the result of the previous xor 
-        #if flag==0:
-            #print('state', i+1, 'of the lfsr :',seed)
+        
     return output
 
 

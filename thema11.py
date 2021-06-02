@@ -52,6 +52,7 @@ def fast(a, g, N):
         x = (x**2) % N
     return d 
 
+#------------ΜΑΙΝ-------------
 
 # STEP 1: find p and q
 primes = findPrimes(2, N)

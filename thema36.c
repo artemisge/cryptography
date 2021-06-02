@@ -28,8 +28,11 @@ int findDivisors(unsigned long long n) {
     }
     return 0;
 }
-
+// επιστρέφει μεγάλο τυχαίο αριθμό με 64 bits.
 unsigned long long ullrand() {
+    // χρησιμοποιούμε union, καθώς η θέση μνήμης του ull/usi 
+    // θα είναι η ίδια, επομένως αν υπολογίσουμε το usi bit-bit
+    // το ull θα πάρει την ίδια συνολική τιμή.
     union num {
         unsigned long long ull;
         unsigned short int usi[4];
@@ -38,12 +41,14 @@ unsigned long long ullrand() {
     for (int i = 0; i < 4; ++i)
         res.usi[i] = rand() % 65536;
     // force 1st bit = 1
-    res.usi[3] |= 32768; 
+    res.usi[3] |= 32768; // bit-wise OR
 
+    // ull -> 64 bit random number
     return res.ull;
 }
 
 int main(void) {
+    // χρειαζόμαστε τον χρόνο t για να υλοποιήσουμε την random.
     time_t t;
 
     int K = 30;

@@ -22,7 +22,7 @@ def findDivisors(n):
     return divisors
 
 # input number n
-# output 1/0
+# output 1 or 0
 def divisorLength(n):
     # find n bit length
     bin_length = n.bit_length()
@@ -43,7 +43,7 @@ def divisorLength(n):
 # probability for K=10000 is 0.0009
 # probability for K=100 is 0.0
 
-
+#--------------MAIN---------------
 K = 100000
 ones = 0
 for i in range(K):

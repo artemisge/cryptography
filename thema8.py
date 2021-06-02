@@ -47,7 +47,8 @@ def decrypt(k,c,iv):
         m.append(xor(c[i-1], decryptECB(xor(c[i], m[i-1]), k)))
     return m
 
-# MAIN
+# ------------MAIN--------------
+
 iv = Random.get_random_bytes(AES.block_size)
 k = b"password12345678"
 

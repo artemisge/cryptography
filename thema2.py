@@ -55,55 +55,28 @@ def decryptECB(enc, pw):
     return cipher_config.decrypt(enc)
 
 def part1():
-    #print("ECB: ")
+    # ECB
     countECB = 0
     for i in range(50):
-        #print("Iteration no ", i)
-
         m1 = os.urandom(AES.block_size)
-        #print('m1 =', bytes2binstr(m1))
-
         m2 = togglebit(m1)
-        #print('m2 =', bytes2binstr(m2))
-
-        #print("Different bits:", countbits(m1, m2))
 
         enc1 = encryptECB(bytes(m1), b"password12345678")
-        #print("encrypted ECB message 1: " , enc1)
-        #print("decrypted ECB message 1: " , decryptECB(enc1, b"Thats my Kung Fu"))
-
         enc2 = encryptECB(bytes(m2), b"password12345678")
-        #print("encrypted ECB message 2: " , enc2)
-        #print("decrypted ECB message 2: " , decryptECB(enc2, b"Thats my Kung Fu"))
 
         count = countbits(enc1, enc2)
         countECB += count
-        #print("Different bits in enc messages:", count)
 
-    #print("CBC: ")
+    # CBC
     countCBC = 0
     for i in range(50):
-        #print("Iteration no ", i)
-
         m1 = os.urandom(AES.block_size)
-        #print('m1 =', bytes2binstr(m1))
-
         m2 = togglebit(m1)
-        #print('m2 =', bytes2binstr(m2))
-
-        #print("Different bits:", countbits(m1, m2))
 
         enc1 = encryptCBC(bytes(m1), b"password12345678")
-        #print("encrypted CBC message 1: " , enc1)
-        #print("decrypted CBC message 1: " , decryptCBC(enc1, b"Thats my Kung Fu"))
-
         enc2 = encryptCBC(bytes(m2), b"password12345678")
-        #print("encrypted CBC message 2: " , enc2)
-        #print("decrypted CBC message 2: " , decryptCBC(enc2, b"Thats my Kung Fu"))
-
         count = countbits(enc1, enc2)
         countCBC += count
-        #print("Different bits in enc messages:", count)
     
     print("Median of different bits in encrypted messages is")
     print("ECB: ", countECB/50.0)
@@ -129,52 +102,32 @@ def BlowfishCBC(m, pw):
 
 
 def part2():
-    #print("ECB Blowfish: ")
+    # ECB
     countECB = 0
     for i in range(50):
-        #print("Iteration no ", i)
-
         m1 = os.urandom(Blowfish.block_size)
-        #print('m1 =', bytes2binstr(m1))
-
         m2 = togglebit(m1)
-        #print('m2 =', bytes2binstr(m2))
-
-        #print("Different bits:", countbits(m1, m2))
 
         enc1 = BlowfishECB(bytes(m1), b"password12345678")
-        #print("encrypted ECB message: " , enc1)
-
         enc2 = BlowfishECB(bytes(m2), b"password12345678")
-        #print("encrypted CBC message: " , enc2)
 
         count = countbits(enc1, enc2)
         countECB += count
-        #print("Different bits in enc messages:", count)
 
-    #print("CBC: ")
+    # CBC
     countCBC = 0
     for i in range(50):
-        #print("Iteration no ", i)
-
         m1 = os.urandom(Blowfish.block_size)
-        #print('m1 =', bytes2binstr(m1))
-
         m2 = togglebit(m1)
-        #print('m2 =', bytes2binstr(m2))
-
-        #print("Different bits:", countbits(m1, m2))
 
         enc1 = BlowfishCBC(bytes(m1), b"password12345678")
-        #print("encrypted CBC message: " , enc1)
 
         enc2 = BlowfishCBC(bytes(m2), b"password12345678")
-        #print("encrypted CBC message: " , enc2)
 
         count = countbits(enc1, enc2)
         countCBC += count
-        #print("Different bits in enc messages:", count)
 
+    # RESULTS
     print("Median of different bits in encrypted messages is")
     print("ECB Blowfish: ", countECB/50.0)
     print("CBC Blowfish: ", countCBC/50.0)
@@ -183,6 +136,3 @@ print("PART 1:")
 part1()
 print("PART 2:")
 part2()
-
-# DONE
-# TODO Latex
